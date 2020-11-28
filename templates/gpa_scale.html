@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    GPA Scale
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h1>GPA Scale</h1>
+    </div>
+    <div class="scrollable">
+           <table>
+                <tr>
+                    <th>Grade</th>
+                    <th>CP</th>
+                    <th>Honors</th>
+                    <th>AP</th>
+                </tr>
+                <tbody>
+                    {% for row in scale %}
+                    <tr>
+                        <td>{{ row.Grade }}</td>
+                        <td>{{ row.CP }}</td>
+                        <td>{{ row.Honors }}</td>
+                        <td>{{ row.AP }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}

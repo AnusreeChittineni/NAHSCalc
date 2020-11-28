@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Grade Scale
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h1>Grade Scale</h1>
+    </div>
+    <div class="scrollable">
+           <table>
+                <tr>
+                    <th>Letter Grade</th>
+                    <th>Minimum Numeric Grade</th>
+                </tr>
+                <tbody>
+                    {% for row in scale %}
+                    <tr>
+                        <td>{{ row.Grade }}</td>
+                        <td>{{ row.Numeric_Grade }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

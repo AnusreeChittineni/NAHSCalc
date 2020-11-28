@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    GPA Calculator
+{% endblock %}
+
+{% block main %}
+
+    <div>
+        <h1>GPA Calculator</h1>
+        <a class="scale" href="/GPA_Scale" target="_blank"><span class="red">GPA Scale</span></a>
+    </div>
+
+    <div>
+        <div id="readroot" style="display: none; padding: 10px">
+            <input class="btn btn-sm" type="button" value="Remove Class" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" />
+                <label for="level">Choose a Course Level:</label>
+                  <select class=".custom-select" name="level">
+                    <option value="CP">CP</option>
+                    <option value="Honors">Honors</option>
+                    <option value="AP">AP</option>
+                  </select>
+                <label for="grade">Choose a Course Grade:</label>
+                  <select class=".custom-select" name="grade">
+                    <option value="A+">A+</option>
+                    <option value="A">A</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B">B</option>
+                    <option value="B-">B-</option>
+                    <option value="C+">C+</option>
+                    <option value="C">C</option>
+                    <option value="C-">C-</option>
+                    <option value="D+">D+</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                  </select>
+        </div>
+
+
+
+        <form method="post" action="/GPA_Calculator" id = "GPA" name="GPA" onsubmit="return validateForm()">
+
+      	<span id="writeroot"></span>
+
+      	<input class="btn btn-sm" type="button" value="Add Class" onclick="moreFields()" />
+
+        <br><br>
+      	 <label for="GPA">Current GPA:</label>
+              <input class="form-control" name="GPA" type="number" value="0.0" step="any" min="0.0" max="5.3">
+          <br><br>
+          <label for="class count"># of Classes That Have Counted Towards Current GPA:</label>
+              <input class="form-control" name="class count" type="number" value="0" min="0", max="60">
+          <br><br>
+      	<input class="btn" type="submit" id = "Calculate GPA" value="Calculate GPA" />
+
+        </form>
+
+    </div>
+
+    <script>
+        var counter = 0;
+
+        function moreFields() {
+        	counter++;
+        	var newFields = document.getElementById('readroot').cloneNode(true);
+        	newFields.id = '';
+        	newFields.style.display = 'block';
+        	var newField = newFields.childNodes;
+        	for (var i=0;i<newField.length;i++) {
+        		var theName = newField[i].name;
+        		if (theName)
+        			newField[i].name = theName + counter;
+        	}
+        	var insertHere = document.getElementById('writeroot');
+        	insertHere.parentNode.insertBefore(newFields,insertHere);
+        }
+
+        window.onload = moreFields;
+
+        function validateForm() {
+          var x = document.forms["GPA"]["GPA"].value;
+          if (x == "" || x == null) {
+            alert("GPA must be filled out!");
+            return false;
+          }
+
+          var y = document.forms["GPA"]["class count"].value;
+          if (y == "" || y == null) {
+            alert("Class count must be filled out!");
+            return false;
+          }
+        }
+
+
+    </script>
+
+
+{% endblock %}

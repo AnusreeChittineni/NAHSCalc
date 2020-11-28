@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Final Grade Calculator
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h1>Final Grade Calculator</h1>
+        <a class="scale" style="padding-bottom:20px;" href="/Grade_Scale" target="_blank"><span class="red">Grade Scale</span></a>
+    </div>
+
+    <div>
+        <form method="post" action="/FinalGradeCalculator" name="FG" onsubmit="return validateForm()">
+            <label for="Current Grade">Current Numeric Grade:</label>
+            <input class="form-control" name="Current Grade" type="number" step="any" value="0.0" min="0.0" max="110.0">
+            <br><br>
+            <label for="Desired Grade">Desired Final Grade in the Class:</label>
+              <select class=".custom-select" name="Desired Grade">
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+              </select>
+            <br><br>
+            <input class="btn" style="background-color: #000000" type="submit" value="Calculate Final Grade" />
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+          var x = document.forms["FG"]["Current Grade"].value;
+          if (x == "" || x == null) {
+            alert("Current Grade must be filled out!");
+            return false;
+          }
+        }
+
+    </script>
+
+{% endblock %}

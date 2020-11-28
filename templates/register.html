@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password_confirmation" placeholder="Password (Again)" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="YOG" placeholder="Year of Graduation" type="number" min= {{current_year}}>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="GPA" placeholder="Current GPA (Leave blank if none)" type="number" step="any" min="0.00">
+        </div>
+        <div class="form-group">
+            <input class-"form-control" name="Class Count" placeholder="# of classes that have counted towards GPA" type="number">
+        </div>
+        <button class="btn btn-dark" type="submit">Register</button>
+    </form>
+{% endblock %}
